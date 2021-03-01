@@ -26,10 +26,6 @@ app.on('ready',()=>{
 
     registerWindow.loadFile('./src/Register.html')
 
-
-    // mainWindow.on('closed',()=>{
-    //     app.quit()
-    // })
 })
 
 
@@ -54,6 +50,18 @@ const users= [
         email:'karla@gmail.com',
         pass:'12345678',
         date:'2021-07-23'
+    },
+    {
+        name:"Mario",
+        email:'mario@gmail.com',
+        pass:'12345678Lm/',
+        date:'2021-02-18'
+    },
+    {
+        name:"Rosa",
+        email:'rosa@gmail.com',
+        pass:'12345678Lm/',
+        date:'2021-05-24'
     }
 ]
 
@@ -64,10 +72,9 @@ const mess = "User already exists"
 
 ipcMain.on('user',(e,user)=>{
    
-    if(usuarioNoRegistrado(user)){   
+    if(!userAlreadyExists(user)){   
         users.push(user)
 
-      
         createUsersWindow()
         usersWindow.webContents.on('did-finish-load',()=>{
             usersWindow.webContents.send('users',users)
@@ -79,40 +86,23 @@ ipcMain.on('user',(e,user)=>{
         registerWindow.webContents.send('message',mess)
     }
     
-    // mainWindow.close()
-
-
-    
-console.log('users',users)
+// console.log('users',users)
 
 
 })
 
-//la validacion deve ser en el main (el de los usuarios)
-//falta realizar las verificaciones del form 
-//mandar mensaje cuando el ususario ya este verificado
-//estilos
 
 
-
-
-
-
-const usuarioNoRegistrado = (user)=>{
+const userAlreadyExists = (user)=>{
 
     for(var i=0; i < users.length; i++){
         if(user.name.toLowerCase() === users[i].name.toLowerCase() ){
-            return false
+            return true
         }else if(user.email.toLowerCase() === users[i].email.toLowerCase()){
-            return false
-        }else{
             return true
         }
 
-                 
-       
         
-
     }
 
 }

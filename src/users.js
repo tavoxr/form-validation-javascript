@@ -14,7 +14,6 @@ ipcRenderer.on('users',(e,users)=>{
     console.log('users', users)
     swal({
         title: 'User registered successfully',
-        // text:'Usuario registrado con exito',
         icon:'success'
     })
 
