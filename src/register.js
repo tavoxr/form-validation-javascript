@@ -38,7 +38,7 @@ form.addEventListener('submit',(e)=>{
     if(!password1.value.match(exprPass)){
         swal({
             title:'Invalid Password  ',
-            text: 'Your password must contain at least 8 characters, 1 capital Letter, 1 lowercase and 1 special character.',
+            text: 'Your password must contain at least 8 characters, 1 capital Letter, 1 lowercase, 1 number and 1 special character.',
             icon:'warning'
         })  
     }else{
